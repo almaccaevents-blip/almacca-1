@@ -194,7 +194,8 @@ export default function PackagesContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Premium <span className="text-yellow-400">Catering</span> Packages
+            Cheapest <span className="text-yellow-400">Catering Packages</span> in Karachi for Weddings & Events
+           
           </motion.h1>
           <motion.p
             className="text-lg sm:text-xl lg:text-2xl mb-6 sm:mb-8 text-gray-200"
@@ -202,26 +203,27 @@ export default function PackagesContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Choose from our carefully designed packages for every occasion
+            Explore our affordable wedding, mehndi, valima, and farmhouse catering packages — perfectly tailored for
+            every budget in Karachi.
           </motion.p>
 
-          <motion.div
+           <motion.div
             className="grid grid-cols-3 gap-4 sm:gap-8 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <div className="text-center">
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-yellow-400">6</div>
-              <div className="text-sm sm:text-base text-gray-300">Premium Packages</div>
+              <div className="text-3xl lg:text-4xl font-bold text-yellow-400">6</div>
+              <div className="text-sm sm:text-base text-gray-300">Exclusive Packages</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-yellow-400">3</div>
-              <div className="text-sm sm:text-base text-gray-300">Event Categories</div>
+              <div className="text-3xl lg:text-4xl font-bold text-yellow-400">3</div>
+              <div className="text-sm sm:text-base text-gray-300">Event Types</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-yellow-400">100%</div>
-              <div className="text-sm sm:text-base text-gray-300">Satisfaction</div>
+              <div className="text-3xl lg:text-4xl font-bold text-yellow-400">100%</div>
+              <div className="text-sm sm:text-base text-gray-300">Customer Satisfaction</div>
             </div>
           </motion.div>
         </div>
@@ -407,21 +409,22 @@ export default function PackagesContent() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-4 sm:mb-6">
-              Need a Custom Package?
+              Looking for <span className="text-white">Customized Catering</span> in Karachi?
             </h2>
             <p className="text-black/80 text-base sm:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto">
-              Can't find the perfect package? Let us create a customized solution tailored to your specific needs and
-              budget.
+             Let us design your dream catering package that fits your event, budget, and preferences — whether it’s a
+              corporate dinner, engagement, or family gathering.
             </p>
-            <Link href="/custom-plan">
-              <Button
-                size="lg"
-                className="bg-black text-white hover:bg-gray-800 text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4"
-              >
-                Create Custom Package
-                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
-              </Button>
-            </Link>
+        <Link href="/order?tab=custom">
+  <Button
+    size="lg"
+    className="bg-black text-white hover:bg-gray-800 text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4"
+  >
+    Create Custom Package
+    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
+  </Button>
+</Link>
+
           </motion.div>
         </div>
       </section>

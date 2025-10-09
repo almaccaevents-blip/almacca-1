@@ -9,6 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import CustomPackageBuilder from "./CustomPackageBuilder"
 import Image from "next/image"
 import { useCart } from "./CartProvider"
+import { useSearchParams } from "next/navigation";
 
 // ✅ Type definitions for menu items and packages
 type MenuItem = {
@@ -194,7 +195,11 @@ const packages: PackageOption[] = [
 ]
 
 export default function EnhancedOrderPage() {
-  const [selectedTab, setSelectedTab] = useState("menu")
+   const searchParams = useSearchParams();
+const tab = searchParams.get("tab") || "menu"; // default to menu if no query
+const [selectedTab, setSelectedTab] = useState(tab);
+
+
   const { addToCart } = useCart()
 
   // ✅ Typed handlers
@@ -225,7 +230,10 @@ export default function EnhancedOrderPage() {
   return (
     <div className="max-w-7xl mx-auto">
       {/* Tab Navigation */}
-      <Tabs value={selectedTab} onValueChange={setSelectedTab} className="w-full">
+      
+        <Tabs value={selectedTab} onValueChange={setSelectedTab} className="w-full">
+
+
        <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 mb-60 gap-8">
   <TabsTrigger value="menu" className="flex items-center justify-center gap-2">
     <ShoppingCart className="w-4 h-4" />
@@ -469,16 +477,17 @@ export default function EnhancedOrderPage() {
         </TabsContent>
 
         {/* CUSTOM PACKAGE TAB - Build your own package */}
-        <TabsContent value="custom" className="space-y-8">
+        <TabsContent id="custompackage" value="custom" className="space-y-8">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-black mb-4">Create Your Custom Package</h2>
+            <h2 className="text-3xl font-bold text-black mb-4">
+              Create Your Custom Package
+            </h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
-              Build your perfect catering package by selecting items from each category. See real-time pricing as you
-              customize your order.
+              Build your perfect catering package by selecting items from each category.
+              See real-time pricing as you customize your order.
             </p>
           </div>
 
-          {/* Custom Package Builder Component */}
           <CustomPackageBuilder />
         </TabsContent>
       </Tabs>
