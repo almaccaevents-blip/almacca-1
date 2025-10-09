@@ -66,7 +66,7 @@ export default function HeroSlider() {
         }
         return prev + 1;
       });
-    }, 50); // 5 seconds total (100 * 50ms)
+    }, 50); 
 
     return () => clearInterval(interval);
   }, [isPlaying]);
@@ -206,7 +206,7 @@ export default function HeroSlider() {
   {/* Controls & Arrows at Bottom for Mobile */}
   <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center gap-3 sm:gap-4 w-full">
     {/* Play/Pause & Indicators */}
-    <div className="flex items-center space-x-2 sm:space-x-4 bg-white/10 backdrop-blur-sm rounded-full px-3 sm:px-6 py-2 sm:py-3">
+    <div className="hidden flex items-center space-x-2 sm:space-x-4 bg-white/10 backdrop-blur-sm rounded-full px-3 sm:px-6 py-2 sm:py-3">
       <button
         onClick={togglePlayPause}
         className="text-white hover:text-yellow-400 transition-colors"
