@@ -10,20 +10,49 @@ import CustomPackageBuilder from "./CustomPackageBuilder"
 import Image from "next/image"
 import { useCart } from "./CartProvider"
 
-// Menu items data - organized by category
-const menuItems = {
+// ✅ Type definitions for menu items and packages
+type MenuItem = {
+  id: string
+  name: string
+  price: number
+  originalPrice?: number
+  image: string
+  description: string
+  category: string
+  spiceLevel: number
+  isVegetarian: boolean
+  isPopular?: boolean
+  preparationTime: string
+  servingSize: string
+}
+
+type PackageOption = {
+  id: string
+  name: string
+  price: number
+  originalPrice?: number
+  description: string
+  image: string
+  features: string[]
+  popular?: boolean
+  minGuests: number
+  maxGuests: number
+}
+
+// ✅ Menu items data - typed
+const menuItems: Record<string, MenuItem[]> = {
   appetizers: [
     {
       id: "chicken-tikka",
       name: "Chicken Tikka Boti",
       price: 180,
-      originalPrice: 220, // Shows discount
+      originalPrice: 220,
       image: "/images/menu-display.png",
       description: "Tender marinated chicken pieces grilled to perfection with aromatic spices",
       category: "appetizers",
-      spiceLevel: 3, // 1-5 scale
+      spiceLevel: 3,
       isVegetarian: false,
-      isPopular: true, // Shows "Popular" badge
+      isPopular: true,
       preparationTime: "25 mins",
       servingSize: "6-8 pieces",
     },
@@ -89,7 +118,7 @@ const menuItems = {
       image: "/images/food-display.jpeg",
       description: "Soft milk dumplings soaked in cardamom-flavored sugar syrup",
       category: "desserts",
-      spiceLevel: 0, // Desserts have no spice
+      spiceLevel: 0,
       isVegetarian: true,
       isPopular: true,
       preparationTime: "5 mins",
@@ -98,12 +127,12 @@ const menuItems = {
   ],
 }
 
-// Pre-made package options
-const packages = [
+// ✅ Packages - typed
+const packages: PackageOption[] = [
   {
     id: "silver",
     name: "Silver Package",
-    price: 1200, // Per person
+    price: 1200,
     originalPrice: 1500,
     description: "Perfect for intimate gatherings and small events",
     image: "/images/catering-service.png",
@@ -137,7 +166,7 @@ const packages = [
       "6-hour event coverage",
       "Premium decoration package",
     ],
-    popular: true, // This will be highlighted
+    popular: true,
     minGuests: 50,
     maxGuests: 200,
   },
@@ -165,14 +194,13 @@ const packages = [
 ]
 
 export default function EnhancedOrderPage() {
-  // State management for the component
-  const [selectedTab, setSelectedTab] = useState("menu") // Current active tab
+  const [selectedTab, setSelectedTab] = useState("menu")
   const { addToCart } = useCart()
 
-  // Function to open order modal with either an item or package
-  const handleAddToCart = (item: any) => {
+  // ✅ Typed handlers
+  const handleAddToCart = (item: MenuItem) => {
     addToCart({
-      id: Number.parseInt(item.id.replace(/\D/g, "") || Math.random() * 1000),
+      id: Number.parseInt(item.id.replace(/\D/g, "")) || Math.floor(Math.random() * 1000),
       name: item.name,
       price: item.price,
       image: item.image,
@@ -180,9 +208,9 @@ export default function EnhancedOrderPage() {
     })
   }
 
-  const handleAddPackageToCart = (pkg: any) => {
+  const handleAddPackageToCart = (pkg: PackageOption) => {
     addToCart({
-      id: Number.parseInt(pkg.id.replace(/\D/g, "") || Math.random() * 1000),
+      id: Number.parseInt(pkg.id.replace(/\D/g, "")) || Math.floor(Math.random() * 1000),
       name: `${pkg.name} Package`,
       price: pkg.price,
       image: pkg.image,
@@ -190,13 +218,10 @@ export default function EnhancedOrderPage() {
     })
   }
 
-  // Helper function to display spice level as flame icons
-  const getSpiceIcons = (level: number) => {
-    return Array.from({ length: 5 }, (_, i) => (
+  const getSpiceIcons = (level: number) =>
+    Array.from({ length: 5 }, (_, i) => (
       <Flame key={i} className={`w-3 h-3 ${i < level ? "text-red-500" : "text-gray-300"}`} />
     ))
-  }
-
   return (
     <div className="max-w-7xl mx-auto">
       {/* Tab Navigation */}
