@@ -1,19 +1,3 @@
-/**
- * ENHANCED ORDER PAGE COMPONENT
- *
- * This is the main ordering interface that provides three ways to order:
- * 1. Individual Menu Items - Browse and order specific dishes
- * 2. Pre-made Packages - Choose from Silver, Gold, Platinum packages
- * 3. Custom Package Builder - Create your own package step by step
- *
- * Features:
- * - Tab-based navigation between ordering methods
- * - Animated menu cards with hover effects
- * - Real-time pricing calculations
- * - Integration with Order Modal for checkout
- * - Responsive design for all devices
- */
-
 "use client"
 
 import { useState } from "react"
@@ -217,20 +201,21 @@ export default function EnhancedOrderPage() {
     <div className="max-w-7xl mx-auto">
       {/* Tab Navigation */}
       <Tabs value={selectedTab} onValueChange={setSelectedTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-3 mb-8">
-          <TabsTrigger value="menu" className="flex items-center gap-2">
-            <ShoppingCart className="w-4 h-4" />
-            Menu Items
-          </TabsTrigger>
-          <TabsTrigger value="packages" className="flex items-center gap-2">
-            <Package className="w-4 h-4" />
-            Packages
-          </TabsTrigger>
-          <TabsTrigger value="custom" className="flex items-center gap-2">
-            <Wand2 className="w-4 h-4" />
-            Create Your Package
-          </TabsTrigger>
-        </TabsList>
+       <TabsList className="grid w-full grid-cols-1 sm:grid-cols-3 mb-60 gap-8">
+  <TabsTrigger value="menu" className="flex items-center justify-center gap-2">
+    <ShoppingCart className="w-4 h-4" />
+    Menu Items
+  </TabsTrigger>
+  <TabsTrigger value="packages" className="flex items-center justify-center gap-2">
+    <Package className="w-4 h-4" />
+    Packages
+  </TabsTrigger>
+  <TabsTrigger value="custom" className="flex items-center justify-center gap-2">
+    <Wand2 className="w-4 h-4" />
+    Create Your Package
+  </TabsTrigger>
+</TabsList>
+
 
         {/* MENU ITEMS TAB - Browse individual dishes */}
         <TabsContent value="menu" className="space-y-8">
@@ -352,7 +337,7 @@ export default function EnhancedOrderPage() {
         {/* PACKAGES TAB - Pre-made catering packages */}
         <TabsContent value="packages" className="space-y-8">
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-black mb-4">Choose Your Package</h2>
+            <h2 className="text-3xl font-bold text-black mb-4 ">Choose Your Package</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Select from our carefully designed packages or customize one to fit your needs perfectly.
             </p>
