@@ -16,11 +16,11 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   metadataBase: new URL("https://almacca.com/"),
   title: {
-    default: "Al-Macca Caterers & Event Planner - Premium Catering Services in Pakistan",
+    default: "Al-Macca Caterers & Event Planner - Karachi Best Catering",
     template: "%s | Al-Macca Caterers",
   },
   description:
-    "Al-Macca Caterers offers premium catering services for weddings, corporate events, and special occasions across Pakistan. Authentic Pakistani cuisine with professional service.",
+    "Al-Macca Caterers in Karachi is more than just providing food they are storytellers of taste, Let's explore Al-Macca Caterers and its great service in Karachi..",
   keywords: [
     "catering services Pakistan",
     "wedding catering",
@@ -31,9 +31,10 @@ export const metadata: Metadata = {
     "halal catering",
     "biryani catering",
     "desi food catering",
+    "Karachi best catering"
   ],
   authors: [{ name: "Al-Macca Caterers" }],
-  creator: "Al-Macca Caterers & Event Planner",
+  creator: "BSH SOLUTIONS",
   publisher: "Al-Macca Caterers",
   icons: {
     icon: "/images/logo.jpeg", 
