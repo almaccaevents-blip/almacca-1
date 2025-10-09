@@ -161,7 +161,21 @@ export default function PackagesContent() {
     return 0
   })
 
-  const handleAddToCart = (pkg: any) => {
+  type Package = {
+    id: string
+    name: string
+    price: number
+    originalPrice?: number
+    description: string
+    features: string[]
+    minGuests: number
+    maxGuests: number
+    category: string
+    popular: boolean
+    link: string
+  }
+
+  const handleAddToCart = (pkg: Package) => {
     addToCart({
       id: Date.now(),
       name: pkg.name,
