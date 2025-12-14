@@ -79,5 +79,13 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/almaccaevents-blip/almacca-1.git"
+  },
+  "bugs": {
+    "url": "https://github.com/almaccaevents-blip/almacca-1/issues"
+  },
+  "homepage": "https://github.com/almaccaevents-blip/almacca-1#readme"
 }
