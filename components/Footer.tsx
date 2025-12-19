@@ -281,12 +281,12 @@ export default function Footer() {
             </a>
           </div>
           <div>
-            <h2>
+            <h2 className="text-lg sm:text-sm">
               <a
                 href="https://www.bshsolutionss.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#1A14A5] text-xs sm:text-sm hover:text-yellow-400 transition-colors"
+                className="text-[#1A14A5] hover:text-[#1A14A5] text-xl sm:text-xl transition-colors"
               >
                 Powered by BSH Solutions
               </a>
