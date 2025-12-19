@@ -1,33 +1,43 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import Image from "next/image"
-import { MapPin, Phone, Mail, Facebook, Instagram, MessageCircle, ArrowUp, Twitter, Linkedin } from "lucide-react"
-import { useEffect, useState } from "react"
+import Link from "next/link";
+import Image from "next/image";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Facebook,
+  Instagram,
+  MessageCircle,
+  ArrowUp,
+  Twitter,
+  Linkedin,
+} from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function Footer() {
-  const [isVisible, setIsVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(false);
 
   // Control scroll to top visibility
   useEffect(() => {
     const toggleVisibility = () => {
       if (window.pageYOffset > 300) {
-        setIsVisible(true)
+        setIsVisible(true);
       } else {
-        setIsVisible(false)
+        setIsVisible(false);
       }
-    }
+    };
 
-    window.addEventListener("scroll", toggleVisibility)
-    return () => window.removeEventListener("scroll", toggleVisibility)
-  }, [])
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: "smooth",
-    })
-  }
+    });
+  };
 
   return (
     <footer className="relative text-white overflow-hidden">
@@ -54,19 +64,30 @@ export default function Footer() {
                 className="w-12 h-12 sm:w-16 sm:h-16 rounded-full border-2 border-yellow-400 shadow-lg"
               />
               <div className="ml-3">
-                <h3 className="text-xl sm:text-2xl font-bold text-yellow-400">Al-Macca</h3>
-                <p className="text-yellow-300 text-xs sm:text-sm">Caterers & Event Planner</p>
+                <h3 className="text-xl sm:text-2xl font-bold text-yellow-400">
+                  Al-Macca
+                </h3>
+                <p className="text-yellow-300 text-xs sm:text-sm">
+                  Caterers & Event Planner
+                </p>
               </div>
             </div>
             <p className="text-gray-300 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
-              Creating memorable experiences through exceptional cuisine and professional service for over a decade. We
-              bring your vision to life with our culinary expertise.
+              Creating memorable experiences through exceptional cuisine and
+              professional service for over a decade. We bring your vision to
+              life with our culinary expertise.
             </p>
 
             <div className="p-3 sm:p-4 bg-black/50 rounded-lg border border-yellow-500/20">
-              <h4 className="text-yellow-400 font-medium mb-2 text-sm sm:text-base">Business Hours</h4>
-              <p className="text-gray-300 text-xs sm:text-sm">Monday - Sunday: 9:00 AM - 10:00 PM</p>
-              <p className="text-gray-300 text-xs sm:text-sm">Special Events: 24/7 by appointment</p>
+              <h4 className="text-yellow-400 font-medium mb-2 text-sm sm:text-base">
+                Business Hours
+              </h4>
+              <p className="text-gray-300 text-xs sm:text-sm">
+                Monday - Sunday: 9:00 AM - 10:00 PM
+              </p>
+              <p className="text-gray-300 text-xs sm:text-sm">
+                Special Events: 24/7 by appointment
+              </p>
             </div>
           </div>
 
@@ -77,37 +98,58 @@ export default function Footer() {
             </h4>
             <ul className="space-y-2 sm:space-y-3">
               <li>
-                <Link href="/about" className="text-gray-300 hover:text-yellow-400 transition-colors hover-lift text-sm sm:text-base">
+                <Link
+                  href="/about"
+                  className="text-gray-300 hover:text-yellow-400 transition-colors hover-lift text-sm sm:text-base"
+                >
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/menu" className="text-gray-300 hover:text-yellow-400 transition-colors hover-lift text-sm sm:text-base">
+                <Link
+                  href="/menu"
+                  className="text-gray-300 hover:text-yellow-400 transition-colors hover-lift text-sm sm:text-base"
+                >
                   Menu
                 </Link>
               </li>
               <li>
-                <Link href="/packages" className="text-gray-300 hover:text-yellow-400 transition-colors hover-lift text-sm sm:text-base">
+                <Link
+                  href="/packages"
+                  className="text-gray-300 hover:text-yellow-400 transition-colors hover-lift text-sm sm:text-base"
+                >
                   Packages
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="text-gray-300 hover:text-yellow-400 transition-colors hover-lift text-sm sm:text-base">
+                <Link
+                  href="/services"
+                  className="text-gray-300 hover:text-yellow-400 transition-colors hover-lift text-sm sm:text-base"
+                >
                   Services
                 </Link>
               </li>
               <li>
-                <Link href="/gallery" className="text-gray-300 hover:text-yellow-400 transition-colors hover-lift text-sm sm:text-base">
+                <Link
+                  href="/gallery"
+                  className="text-gray-300 hover:text-yellow-400 transition-colors hover-lift text-sm sm:text-base"
+                >
                   Gallery
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-300 hover:text-yellow-400 transition-colors hover-lift text-sm sm:text-base">
+                <Link
+                  href="/contact"
+                  className="text-gray-300 hover:text-yellow-400 transition-colors hover-lift text-sm sm:text-base"
+                >
                   Contact
                 </Link>
               </li>
               <li>
-                <Link href="/order" className="text-gray-300 hover:text-yellow-400 transition-colors hover-lift text-sm sm:text-base">
+                <Link
+                  href="/order"
+                  className="text-gray-300 hover:text-yellow-400 transition-colors hover-lift text-sm sm:text-base"
+                >
                   Order Now
                 </Link>
               </li>
@@ -147,8 +189,13 @@ export default function Footer() {
             </ul>
 
             <div className="mt-4 sm:mt-6 p-3 bg-gradient-to-br from-yellow-500/10 to-amber-600/10 rounded-lg border border-yellow-500/20">
-              <p className="text-yellow-400 text-xs sm:text-sm font-medium">Need a custom service?</p>
-              <Link href="/contact" className="text-white text-xs sm:text-sm hover:text-yellow-200 transition-colors">
+              <p className="text-yellow-400 text-xs sm:text-sm font-medium">
+                Need a custom service?
+              </p>
+              <Link
+                href="/contact"
+                className="text-white text-xs sm:text-sm hover:text-yellow-200 transition-colors"
+              >
                 Contact us for details →
               </Link>
             </div>
@@ -162,26 +209,37 @@ export default function Footer() {
             <div className="space-y-3 sm:space-y-4">
               <div className="flex items-start hover-lift">
                 <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 mr-2 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-300 text-xs sm:text-sm">B-543, Block-13 Gulburg, Opposite Madina Bakery, Karachi</span>
+                <span className="text-gray-300 text-xs sm:text-sm">
+                  B-543, Block-13 Gulburg, Opposite Madina Bakery, Karachi
+                </span>
               </div>
 
               <div className="flex items-center hover-lift">
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 mr-2 flex-shrink-0" />
-                <a href="tel:+923333227339" className="text-gray-300 text-xs sm:text-sm hover:text-yellow-400 transition-colors">
+                <a
+                  href="tel:+923333227339"
+                  className="text-gray-300 text-xs sm:text-sm hover:text-yellow-400 transition-colors"
+                >
                   0333-3227339
                 </a>
               </div>
 
               <div className="flex items-center hover-lift">
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 mr-2 flex-shrink-0" />
-                <a href="tel:+923353454808" className="text-gray-300 text-xs sm:text-sm hover:text-yellow-400 transition-colors">
+                <a
+                  href="tel:+923353454808"
+                  className="text-gray-300 text-xs sm:text-sm hover:text-yellow-400 transition-colors"
+                >
                   0335-3454808
                 </a>
               </div>
 
               <div className="flex items-center hover-lift">
                 <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-yellow-400 mr-2 flex-shrink-0" />
-                <a href="mailto:info@almaccacaterers.com" className="text-gray-300 text-xs sm:text-sm hover:text-yellow-400 transition-colors">
+                <a
+                  href="mailto:info@almaccacaterers.com"
+                  className="text-gray-300 text-xs sm:text-sm hover:text-yellow-400 transition-colors"
+                >
                   info@almaccacaterers.com
                 </a>
               </div>
@@ -189,7 +247,9 @@ export default function Footer() {
 
             {/* Newsletter - Enhanced Mobile Layout */}
             <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-black/50 rounded-lg border border-yellow-500/20">
-              <h4 className="text-yellow-400 font-medium mb-2 text-sm sm:text-base">Subscribe to Newsletter</h4>
+              <h4 className="text-yellow-400 font-medium mb-2 text-sm sm:text-base">
+                Subscribe to Newsletter
+              </h4>
               <div className="flex flex-col sm:flex-row gap-2 sm:gap-0">
                 <input
                   type="email"
@@ -208,7 +268,7 @@ export default function Footer() {
         <div className="border-t border-yellow-500/20 mt-8 sm:mt-10 pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center animate-fadeInUp">
           <div className="flex space-x-3 sm:space-x-4 mb-4 sm:mb-6 md:mb-0">
             <a
-              href="#"
+              href="https://www.facebook.com/p/Al-MACCA-Catereres-Events-Planner-61560775265790/"
               className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/50 border border-yellow-500/30 flex items-center justify-center text-gray-300 hover:bg-blue-600 hover:text-white hover:border-transparent transition-all hover-scale"
             >
               <Facebook className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -219,28 +279,14 @@ export default function Footer() {
             >
               <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
             </a>
-            <a
-              href="#"
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/50 border border-yellow-500/30 flex items-center justify-center text-gray-300 hover:bg-sky-500 hover:text-white hover:border-transparent transition-all hover-scale"
-            >
-              <Twitter className="w-4 h-4 sm:w-5 sm:h-5" />
-            </a>
-            <a
-              href="#"
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/50 border border-yellow-500/30 flex items-center justify-center text-gray-300 hover:bg-blue-700 hover:text-white hover:border-transparent transition-all hover-scale"
-            >
-              <Linkedin className="w-4 h-4 sm:w-5 sm:h-5" />
-            </a>
-            <a
-              href="#"
-              className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/50 border border-yellow-500/30 flex items-center justify-center text-gray-300 hover:bg-green-600 hover:text-white hover:border-transparent transition-all hover-scale"
-            >
-              <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-            </a>
           </div>
 
           <p className="text-gray-400 text-xs sm:text-sm text-center md:text-right">
-            © 2024 <span className="text-yellow-400">Al-Macca Caterers & Event Planner</span>. All rights reserved.
+            © 2024{" "}
+            <span className="text-yellow-400">
+              Al-Macca Caterers & Event Planner
+            </span>
+            . All rights reserved.
           </p>
         </div>
       </div>
@@ -259,5 +305,5 @@ export default function Footer() {
       {/* Bottom decorative element */}
       <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-yellow-500 to-amber-600"></div>
     </footer>
-  )
+  );
 }
