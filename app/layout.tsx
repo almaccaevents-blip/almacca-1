@@ -1,17 +1,18 @@
-import type React from "react"
-import type { Metadata } from "next"
-import { Inter } from "next/font/google"
-import "./globals.css"
-import Navbar from "@/components/Navbar"
-import Footer from "@/components/Footer"
-import { CartProvider } from "@/components/CartProvider"
-import FloatingCart from "@/components/FloatingCart"
-import CartNotification from "@/components/CartNotification"
-import WhatsAppButton from "@/components/WhatsAppButton"
-import { AnimationProvider } from "@/components/AnimationProvider"
-import { Analytics } from "@vercel/analytics/next"
-import { SpeedInsights } from '@vercel/speed-insights/next';
-const inter = Inter({ subsets: ["latin"] })
+import type React from "react";
+import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { CartProvider } from "@/components/CartProvider";
+import FloatingCart from "@/components/FloatingCart";
+import CartNotification from "@/components/CartNotification";
+import WhatsAppButton from "@/components/WhatsAppButton";
+import { AnimationProvider } from "@/components/AnimationProvider";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import JsonLd from "@/components/JsonLd";
+const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://almacca.com/"),
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s | Al-Macca Caterers",
   },
   description:
-    "Al-Macca Caterers in Karachi is more than just providing food they are storytellers of taste, Let's explore Al-Macca Caterers and its great service in Karachi..",
+    "Al-Macca Caterers in Karachi is more than just providing food they are storytellers of taste. Explore our affordable wedding, corporate, and party catering packages.",
   keywords: [
     "catering services Pakistan",
     "wedding catering",
@@ -31,13 +32,13 @@ export const metadata: Metadata = {
     "halal catering",
     "biryani catering",
     "desi food catering",
-    "Karachi best catering"
+    "Karachi best catering",
   ],
   authors: [{ name: "Al-Macca Caterers" }],
   creator: "BSH SOLUTIONS",
   publisher: "Al-Macca Caterers",
   icons: {
-    icon: "/images/logo.jpeg", 
+    icon: "/images/logo.jpeg",
   },
   robots: {
     index: true,
@@ -65,6 +66,12 @@ export const metadata: Metadata = {
         height: 630,
         alt: "Al-Macca Caterers - Premium Food Service",
       },
+      {
+        url: "/opengraph-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Al-Macca Caterers Showcase",
+      },
     ],
   },
   twitter: {
@@ -78,16 +85,15 @@ export const metadata: Metadata = {
     google: "your-google-verification-code",
   },
   alternates: {
-    canonical: "https://almacca.com",
+    canonical: "./",
   },
   generator: "BSH SOLUTIONS",
-}
-
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en">
@@ -97,14 +103,15 @@ export default function RootLayout({
             <Navbar />
             <main>{children}</main>
             <Analytics />
-             <SpeedInsights />
+            <SpeedInsights />
             <Footer />
             <WhatsAppButton />
             <FloatingCart />
+            <JsonLd />
             <CartNotification />
           </AnimationProvider>
         </CartProvider>
       </body>
     </html>
-  )
+  );
 }

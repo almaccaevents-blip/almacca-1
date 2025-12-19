@@ -1,9 +1,9 @@
-
-import type { Metadata } from "next"
-import PackagesContent from "@/components/PackagesContent"
+import type { Metadata } from "next";
+import PackagesContent from "@/components/PackagesContent";
 
 export const metadata: Metadata = {
-  title: "Cheapest Catering Packages in Karachi | Affordable Event & Wedding Catering",
+  title:
+    "Cheapest Catering Packages in Karachi | Affordable Event & Wedding Catering",
   description:
     "Looking for the cheapest catering packages in Karachi? Al-Macca Caterers & Event Planner offers budget-friendly wedding, corporate, and party catering with delicious international menus and professional service.",
   keywords: [
@@ -32,13 +32,12 @@ export const metadata: Metadata = {
     locale: "en_PK",
     type: "website",
   },
-}
-
+};
 
 export default function PackagesPage() {
   return (
     <div className="min-h-screen bg-white">
       <PackagesContent />
     </div>
-  )
+  );
 }

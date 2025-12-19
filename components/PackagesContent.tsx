@@ -1,179 +1,45 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Star, Crown, Users, Check, ShoppingCart, ArrowRight, Filter } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import Image from "next/image"
-import Link from "next/link"
-import { useCart } from "./CartProvider"
-import { useState } from "react"
+import { motion } from "framer-motion";
+import {
+  Star,
+  Crown,
+  Users,
+  Check,
+  ShoppingCart,
+  ArrowRight,
+  Filter,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
+import Link from "next/link";
+import { useCart } from "./CartProvider";
+import { useState } from "react";
 
 // All packages data
-const allPackages = [
-  // Mehndi & Mayion Packages
-  {
-    id: "mehndi-basic",
-    name: "Mehndi Basic Package",
-    price: 1200,
-    originalPrice: 1400,
-    description: "Perfect for intimate mehndi celebrations with traditional flavors",
-    features: [
-      "Traditional Henna Ceremony Setup",
-      "Authentic Pakistani Cuisine",
-      "Decorative Lighting",
-      "Music System",
-      "Professional Service Staff",
-      "Traditional Sweets & Desserts",
-    ],
-    minGuests: 50,
-    maxGuests: 100,
-    category: "Mehndi & Mayion",
-    popular: false,
-    link: "/packages/mehndi-mayion",
-  },
-  {
-    id: "mehndi-premium",
-    name: "Mehndi Premium Package",
-    price: 1800,
-    originalPrice: 2100,
-    description: "Luxurious mehndi celebration with premium amenities",
-    features: [
-      "Premium Henna Artists",
-      "Gourmet Pakistani Cuisine",
-      "Elegant Floral Decorations",
-      "Professional Photography",
-      "Live Music Performance",
-      "Premium Dessert Counter",
-      "VIP Guest Seating",
-    ],
-    minGuests: 100,
-    maxGuests: 200,
-    category: "Mehndi & Mayion",
-    popular: true,
-    link: "/packages/mehndi-mayion",
-  },
+import { allPackages, type Package } from "@/data/packages";
 
-  // Shaadi & Valima Packages
-  {
-    id: "shaadi-classic",
-    name: "Shaadi Classic Package",
-    price: 2500,
-    originalPrice: 2800,
-    description: "Traditional wedding package with authentic Pakistani cuisine",
-    features: [
-      "Multi-Course Pakistani Cuisine",
-      "Wedding Stage Decoration",
-      "Professional Service Team",
-      "Traditional Music Setup",
-      "Bridal Room Setup",
-      "Guest Welcome Drinks",
-      "Photography Assistance",
-    ],
-    minGuests: 200,
-    maxGuests: 400,
-    category: "Shaadi & Valima",
-    popular: true,
-    link: "/packages/shaadi-valima",
-  },
-  {
-    id: "valima-royal",
-    name: "Valima Royal Package",
-    price: 3200,
-    originalPrice: 3600,
-    description: "Royal valima celebration with premium international cuisine",
-    features: [
-      "International & Pakistani Cuisine",
-      "Luxury Stage & Backdrop",
-      "Premium Floral Arrangements",
-      "Live Cooking Stations",
-      "Professional Photography",
-      "VIP Guest Services",
-      "Premium Dessert Buffet",
-      "Complimentary Bridal Suite",
-    ],
-    minGuests: 300,
-    maxGuests: 600,
-    category: "Shaadi & Valima",
-    popular: false,
-    link: "/packages/shaadi-valima",
-  },
-
-  // Farmhouse Packages
-  {
-    id: "farmhouse-basic",
-    name: "Farmhouse Basic Package",
-    price: 1500,
-    originalPrice: 1700,
-    description: "Outdoor farmhouse dining experience with BBQ specialties",
-    features: [
-      "Outdoor BBQ Setup",
-      "Traditional Pakistani Cuisine",
-      "Farmhouse Ambiance",
-      "Bonfire Arrangement",
-      "Outdoor Seating",
-      "Live Cooking Display",
-    ],
-    minGuests: 80,
-    maxGuests: 150,
-    category: "Farmhouse",
-    popular: false,
-    link: "/packages/farmhouse",
-  },
-  {
-    id: "farmhouse-deluxe",
-    name: "Farmhouse Deluxe Package",
-    price: 2200,
-    originalPrice: 2500,
-    description: "Premium farmhouse experience with luxury amenities",
-    features: [
-      "Premium BBQ & Grill Station",
-      "International Cuisine Options",
-      "Luxury Outdoor Setup",
-      "Professional Entertainment",
-      "Premium Bar Setup",
-      "Outdoor Games & Activities",
-      "Professional Photography",
-      "Transportation Assistance",
-    ],
-    minGuests: 150,
-    maxGuests: 300,
-    category: "Farmhouse",
-    popular: true,
-    link: "/packages/farmhouse",
-  },
-]
-
-const categories = ["All", "Mehndi & Mayion", "Shaadi & Valima", "Farmhouse"]
+const categories = ["All", "Mehndi & Mayion", "Shaadi & Valima", "Farmhouse"];
 
 export default function PackagesContent() {
-  const { addToCart } = useCart()
-  const [selectedCategory, setSelectedCategory] = useState("All")
-  const [sortBy, setSortBy] = useState("popular")
+  const { addToCart } = useCart();
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [sortBy, setSortBy] = useState("popular");
 
-  const filteredPackages = allPackages.filter((pkg) => selectedCategory === "All" || pkg.category === selectedCategory)
+  const filteredPackages = allPackages.filter(
+    (pkg) => selectedCategory === "All" || pkg.category === selectedCategory
+  );
 
   const sortedPackages = [...filteredPackages].sort((a, b) => {
-    if (sortBy === "popular") return b.popular ? 1 : -1
-    if (sortBy === "price-low") return a.price - b.price
-    if (sortBy === "price-high") return b.price - a.price
-    if (sortBy === "guests") return a.minGuests - b.minGuests
-    return 0
-  })
+    if (sortBy === "popular") return b.popular ? 1 : -1;
+    if (sortBy === "price-low") return a.price - b.price;
+    if (sortBy === "price-high") return b.price - a.price;
+    if (sortBy === "guests") return a.minGuests - b.minGuests;
+    return 0;
+  });
 
-  type Package = {
-    id: string
-    name: string
-    price: number
-    originalPrice?: number
-    description: string
-    features: string[]
-    minGuests: number
-    maxGuests: number
-    category: string
-    popular: boolean
-    link: string
-  }
+  // Removed local Package type definition as it is imported
 
   const handleAddToCart = (pkg: Package) => {
     addToCart({
@@ -182,8 +48,8 @@ export default function PackagesContent() {
       price: pkg.price,
       image: "/images/hero-food.jpeg",
       category: pkg.category,
-    })
-  }
+    });
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -197,6 +63,8 @@ export default function PackagesContent() {
             className="object-cover"
             priority
             sizes="100vw"
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/2wBDAQMDAwQEBAYEBAQUEBQKFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAABAAEDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9sAQwACAgICAgIDAgIDBQMEBAUGBQUFBQYIBgYGBgYICggICAgICAoKCgoKCgoKDAwMDAwMDQ0NDQ0ODg4ODg4ODg4O/9sAQwECAgIEBAQHBAQHDQsKCw0ODQ0ODQ0ODQ0ODQ0ODQ0ODQ0ODQ0ODQ0ODQ0ODQ0ODQ0ODQ0ODQ0ODQ0ODQ0ODQ4O/90ABAAFAAP/2gAIAQEAAAH8A5T/2Q=="
           />
           <div className="absolute inset-0 bg-black/50" />
         </div>
@@ -208,8 +76,8 @@ export default function PackagesContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Cheapest <span className="text-yellow-400">Catering Packages</span> in Karachi for Weddings & Events
-           
+            Cheapest <span className="text-yellow-400">Catering Packages</span>{" "}
+            in Karachi for Weddings & Events
           </motion.h1>
           <motion.p
             className="text-lg sm:text-xl lg:text-2xl mb-6 sm:mb-8 text-gray-200"
@@ -217,27 +85,39 @@ export default function PackagesContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Explore our affordable wedding, mehndi, valima, and farmhouse catering packages — perfectly tailored for
-            every budget in Karachi.
+            Explore our affordable wedding, mehndi, valima, and farmhouse
+            catering packages — perfectly tailored for every budget in Karachi.
           </motion.p>
 
-           <motion.div
+          <motion.div
             className="grid grid-cols-3 gap-4 sm:gap-8 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-bold text-yellow-400">6</div>
-              <div className="text-sm sm:text-base text-gray-300">Exclusive Packages</div>
+              <div className="text-3xl lg:text-4xl font-bold text-yellow-400">
+                6
+              </div>
+              <div className="text-sm sm:text-base text-gray-300">
+                Exclusive Packages
+              </div>
             </div>
             <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-bold text-yellow-400">3</div>
-              <div className="text-sm sm:text-base text-gray-300">Event Types</div>
+              <div className="text-3xl lg:text-4xl font-bold text-yellow-400">
+                3
+              </div>
+              <div className="text-sm sm:text-base text-gray-300">
+                Event Types
+              </div>
             </div>
             <div className="text-center">
-              <div className="text-3xl lg:text-4xl font-bold text-yellow-400">100%</div>
-              <div className="text-sm sm:text-base text-gray-300">Customer Satisfaction</div>
+              <div className="text-3xl lg:text-4xl font-bold text-yellow-400">
+                100%
+              </div>
+              <div className="text-sm sm:text-base text-gray-300">
+                Customer Satisfaction
+              </div>
             </div>
           </motion.div>
         </div>
@@ -252,7 +132,9 @@ export default function PackagesContent() {
               {categories.map((category) => (
                 <Button
                   key={category}
-                  variant={selectedCategory === category ? "default" : "outline"}
+                  variant={
+                    selectedCategory === category ? "default" : "outline"
+                  }
                   size="sm"
                   onClick={() => setSelectedCategory(category)}
                   className={`${
@@ -292,7 +174,9 @@ export default function PackagesContent() {
               <motion.div
                 key={pkg.id}
                 className={`relative bg-white rounded-2xl shadow-xl overflow-hidden ${
-                  pkg.popular ? "border-4 border-yellow-400 transform scale-105" : "border border-gray-200"
+                  pkg.popular
+                    ? "border-4 border-yellow-400 transform scale-105"
+                    : "border border-gray-200"
                 }`}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -310,7 +194,10 @@ export default function PackagesContent() {
 
                 {/* Category Badge */}
                 <div className="absolute top-4 left-4 z-10">
-                  <Badge variant="secondary" className="bg-black/80 text-white text-xs">
+                  <Badge
+                    variant="secondary"
+                    className="bg-black/80 text-white text-xs"
+                  >
                     {pkg.category}
                   </Badge>
                 </div>
@@ -340,18 +227,26 @@ export default function PackagesContent() {
                     <div className="bg-yellow-400 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 text-black">
                       <Crown className="w-6 h-6 sm:w-8 sm:h-8" />
                     </div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-black mb-2">{pkg.name}</h3>
-                    <p className="text-gray-600 text-sm line-clamp-2">{pkg.description}</p>
+                    <h3 className="text-xl sm:text-2xl font-bold text-black mb-2">
+                      {pkg.name}
+                    </h3>
+                    <p className="text-gray-600 text-sm line-clamp-2">
+                      {pkg.description}
+                    </p>
                   </div>
 
                   {/* Pricing */}
                   <div className="text-center mb-4 sm:mb-6">
                     <div className="flex items-baseline justify-center gap-2">
-                      <span className="text-2xl sm:text-3xl font-bold text-black">Rs. {pkg.price}</span>
+                      <span className="text-2xl sm:text-3xl font-bold text-black">
+                        Rs. {pkg.price}
+                      </span>
                       <span className="text-gray-600 text-sm">per person</span>
                     </div>
                     {pkg.originalPrice && (
-                      <div className="text-gray-500 line-through text-base sm:text-lg">Rs. {pkg.originalPrice}</div>
+                      <div className="text-gray-500 line-through text-base sm:text-lg">
+                        Rs. {pkg.originalPrice}
+                      </div>
                     )}
                     <div className="flex items-center justify-center gap-2 mt-2 text-sm text-gray-600">
                       <Users className="w-4 h-4" />
@@ -372,13 +267,18 @@ export default function PackagesContent() {
                       </div>
                     ))}
                     {pkg.features.length > 3 && (
-                      <div className="text-sm text-gray-500 ml-7">+{pkg.features.length - 3} more features</div>
+                      <div className="text-sm text-gray-500 ml-7">
+                        +{pkg.features.length - 3} more features
+                      </div>
                     )}
                   </div>
 
                   {/* Action Buttons */}
                   <div className="space-y-3">
-                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
                       <Button
                         onClick={() => handleAddToCart(pkg)}
                         className={`w-full ${
@@ -423,25 +323,27 @@ export default function PackagesContent() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-black mb-4 sm:mb-6">
-              Looking for <span className="text-white">Customized Catering</span> in Karachi?
+              Looking for{" "}
+              <span className="text-white">Customized Catering</span> in
+              Karachi?
             </h2>
             <p className="text-black/80 text-base sm:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto">
-             Let us design your dream catering package that fits your event, budget, and preferences — whether it’s a
-              corporate dinner, engagement, or family gathering.
+              Let us design your dream catering package that fits your event,
+              budget, and preferences — whether it’s a corporate dinner,
+              engagement, or family gathering.
             </p>
-        <Link href="/order?tab=custom">
-  <Button
-    size="lg"
-    className="bg-black text-white hover:bg-gray-800 text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4"
-  >
-    Create Custom Package
-    <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
-  </Button>
-</Link>
-
+            <Link href="/order?tab=custom">
+              <Button
+                size="lg"
+                className="bg-black text-white hover:bg-gray-800 text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-4"
+              >
+                Create Custom Package
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
+              </Button>
+            </Link>
           </motion.div>
         </div>
       </section>
     </div>
-  )
+  );
 }

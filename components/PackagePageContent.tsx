@@ -1,39 +1,39 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Star, Crown, Users, Check, ShoppingCart, Plus } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import Image from "next/image"
-import { useCart } from "./CartProvider"
-import UnifiedHero from "./UnifiedHero"
-import { useState } from "react"
+import { motion } from "framer-motion";
+import { Star, Crown, Users, Check, ShoppingCart, Plus } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import { useCart } from "./CartProvider";
+import UnifiedHero from "./UnifiedHero";
+import { useState } from "react";
 
 interface Package {
-  id: string
-  name: string
-  price: number
-  originalPrice?: number
-  description: string
-  features: string[]
-  minGuests: number
-  maxGuests: number
-  popular?: boolean
+  id: string;
+  name: string;
+  price: number;
+  originalPrice?: number;
+  description: string;
+  features: string[];
+  minGuests: number;
+  maxGuests: number;
+  popular?: boolean;
 }
 
 interface AdditionalItem {
-  id?: number
-  name: string
-  price: string
-  description: string
-  numericPrice?: number
+  id?: number;
+  name: string;
+  price: string;
+  description: string;
+  numericPrice?: number;
 }
 
 interface PackagePageContentProps {
-  title: string
-  subtitle: string
-  packages: Package[]
-  additionalItems: AdditionalItem[]
-  highlightWord: string
+  title: string;
+  subtitle: string;
+  packages: Package[];
+  additionalItems: AdditionalItem[];
+  highlightWord: string;
 }
 
 export default function PackagePageContent({
@@ -43,8 +43,8 @@ export default function PackagePageContent({
   additionalItems,
   highlightWord,
 }: PackagePageContentProps) {
-  const { addToCart } = useCart()
-  const [addedItems, setAddedItems] = useState<number[]>([])
+  const { addToCart } = useCart();
+  const [addedItems, setAddedItems] = useState<number[]>([]);
 
   const handleAddPackageToCart = (pkg: Package) => {
     addToCart({
@@ -53,12 +53,18 @@ export default function PackagePageContent({
       price: pkg.price,
       image: "/images/hero-food.jpeg",
       category: "Package",
-    })
-  }
+    });
+  };
 
-  const handleAddAdditionalItemToCart = (item: AdditionalItem, index: number) => {
+  const handleAddAdditionalItemToCart = (
+    item: AdditionalItem,
+    index: number
+  ) => {
     // Extract numeric price from string (e.g., "Rs. 50" -> 50)
-    const numericPrice = item.numericPrice || Number.parseInt(item.price.replace(/[^\d]/g, "")) || 0
+    const numericPrice =
+      item.numericPrice ||
+      Number.parseInt(item.price.replace(/[^\d]/g, "")) ||
+      0;
 
     addToCart({
       id: Date.now() + index,
@@ -66,35 +72,42 @@ export default function PackagePageContent({
       price: numericPrice,
       image: "/images/menu-display.png",
       category: "Additional Item",
-    })
+    });
 
     // Show visual feedback
-    setAddedItems((prev) => [...prev, index])
+    setAddedItems((prev) => [...prev, index]);
     setTimeout(() => {
-      setAddedItems((prev) => prev.filter((i) => i !== index))
-    }, 2000)
-  }
+      setAddedItems((prev) => prev.filter((i) => i !== index));
+    }, 2000);
+  };
 
   const heroStats = [
     { number: `${packages.length}`, label: "Packages Available" },
     { number: `${additionalItems.length}`, label: "Add-on Services" },
     { number: "100%", label: "Satisfaction Guaranteed" },
-  ]
+  ];
 
   return (
     <>
       {/* Unified Hero Section */}
-      <UnifiedHero title={title} subtitle={subtitle} highlightWord={highlightWord} stats={heroStats} />
+      <UnifiedHero
+        title={title}
+        subtitle={subtitle}
+        highlightWord={highlightWord}
+        stats={heroStats}
+      />
 
       {/* Packages Section */}
       <section className="py-12 sm:py-16 lg:py-20">
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
             {packages.map((pkg, index) => (
-              <motion.div
+              <motion.article
                 key={pkg.id}
                 className={`relative bg-white rounded-2xl shadow-xl overflow-hidden ${
-                  pkg.popular ? "border-4 border-yellow-400 transform scale-105" : "border border-gray-200"
+                  pkg.popular
+                    ? "border-4 border-yellow-400 transform scale-105"
+                    : "border border-gray-200"
                 }`}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -134,18 +147,24 @@ export default function PackagePageContent({
                     <div className="bg-yellow-400 w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 text-black">
                       <Crown className="w-6 h-6 sm:w-8 sm:h-8" />
                     </div>
-                    <h3 className="text-xl sm:text-2xl font-bold text-black mb-2">{pkg.name}</h3>
+                    <h3 className="text-xl sm:text-2xl font-bold text-black mb-2">
+                      {pkg.name}
+                    </h3>
                     <p className="text-gray-600 text-sm">{pkg.description}</p>
                   </div>
 
                   {/* Pricing */}
                   <div className="text-center mb-4 sm:mb-6">
                     <div className="flex items-baseline justify-center gap-2">
-                      <span className="text-2xl sm:text-3xl font-bold text-black">Rs. {pkg.price}</span>
+                      <span className="text-2xl sm:text-3xl font-bold text-black">
+                        Rs. {pkg.price}
+                      </span>
                       <span className="text-gray-600 text-sm">per person</span>
                     </div>
                     {pkg.originalPrice && (
-                      <div className="text-gray-500 line-through text-base sm:text-lg">Rs. {pkg.originalPrice}</div>
+                      <div className="text-gray-500 line-through text-base sm:text-lg">
+                        Rs. {pkg.originalPrice}
+                      </div>
                     )}
                     <div className="flex items-center justify-center gap-2 mt-2 text-sm text-gray-600">
                       <Users className="w-4 h-4" />
@@ -175,7 +194,10 @@ export default function PackagePageContent({
                   </div>
 
                   {/* Order Button */}
-                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
                     <Button
                       onClick={() => handleAddPackageToCart(pkg)}
                       className={`w-full ${
@@ -193,7 +215,7 @@ export default function PackagePageContent({
                     *Prices may vary based on location and specific requirements
                   </p>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </div>
         </div>
@@ -203,9 +225,12 @@ export default function PackagePageContent({
       <section className="py-12 sm:py-16 lg:py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl font-bold text-black mb-4">Additional Items</h2>
+            <h2 className="text-2xl sm:text-3xl font-bold text-black mb-4">
+              Additional Items
+            </h2>
             <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base">
-              Enhance your event with our premium add-on services and create an unforgettable experience
+              Enhance your event with our premium add-on services and create an
+              unforgettable experience
             </p>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
@@ -229,12 +254,21 @@ export default function PackagePageContent({
                   />
                 </div>
 
-                <h3 className="text-base sm:text-lg font-semibold text-black mb-2">{item.name}</h3>
-                <p className="text-gray-600 mb-4 text-sm line-clamp-2">{item.description}</p>
+                <h3 className="text-base sm:text-lg font-semibold text-black mb-2">
+                  {item.name}
+                </h3>
+                <p className="text-gray-600 mb-4 text-sm line-clamp-2">
+                  {item.description}
+                </p>
 
                 <div className="flex justify-between items-center">
-                  <span className="text-lg sm:text-xl font-bold text-yellow-600">{item.price}</span>
-                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <span className="text-lg sm:text-xl font-bold text-yellow-600">
+                    {item.price}
+                  </span>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
                     <Button
                       size="sm"
                       onClick={() => handleAddAdditionalItemToCart(item, index)}
@@ -265,5 +299,5 @@ export default function PackagePageContent({
         </div>
       </section>
     </>
-  )
+  );
 }
