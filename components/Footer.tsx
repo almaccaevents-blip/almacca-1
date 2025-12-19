@@ -280,6 +280,18 @@ export default function Footer() {
               <Instagram className="w-4 h-4 sm:w-5 sm:h-5" />
             </a>
           </div>
+          <div>
+            <h2>
+              <a
+                href="https://www.bshsolutionss.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#1A14A5] text-xs sm:text-sm hover:text-yellow-400 transition-colors"
+              >
+                Powered by BSH Solutions
+              </a>
+            </h2>
+          </div>
 
           <p className="text-gray-400 text-xs sm:text-sm text-center md:text-right">
             © 2024{" "}
